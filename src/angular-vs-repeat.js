@@ -108,8 +108,7 @@
 					};
 
 				$element.empty();
-				if(!window.getComputedStyle || window.getComputedStyle($element[0]).position !== 'absolute')
-					$element.css('position', 'relative');
+
 				return {
 					pre: function($scope, $element, $attrs, $ctrl){
 						var childClone = angular.element(childCloneHtml),
@@ -393,6 +392,10 @@
 
 							var digestRequired = $scope.startIndex !== _prevStartIndex || $scope.endIndex !== _prevEndIndex;
 
+                            if ($scope.startIndex % 2 === 1) {
+                                $scope.startIndex--;
+                            }
+
 							if(digestRequired)
 								$scope[collectionName] = originalCollection.slice($scope.startIndex, $scope.endIndex);
 
@@ -407,21 +410,4 @@
 		};
 	}]);
 
-	angular.element(document.head).append([
-		'<style>' +
-		'.vs-repeat-wheel-helper{' +
-			'position: absolute;' +
-			'top: 0;' +
-			'bottom: 0;' +
-			'left: 0;' +
-			'right: 0;' +
-			'z-index: 99999;' +
-			'background: rgba(0, 0, 0, 0);' +
-		'}' +
-		'.vs-repeat-repeated-element{' +
-			'position: absolute;' +
-			'z-index: 1;' +
-		'}' +
-		'</style>'
-	].join(''));
 })(window, window.angular);
