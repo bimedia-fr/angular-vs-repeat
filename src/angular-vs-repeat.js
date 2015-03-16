@@ -108,8 +108,6 @@
                         'vsExcess': 'excess'
                     };
 
-                console.log('ngRepeatExpression', ngRepeatExpression);
-
                 $element.empty();
 
                 return {
